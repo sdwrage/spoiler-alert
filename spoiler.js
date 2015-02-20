@@ -19,6 +19,12 @@
     var maxBlur = opts.max
     var partialBlur = opts.partial
     var hintText = opts.hintText
+    var clickType = opts.clickType
+
+    if (clickType != "dblclick") {
+      clickType = "click"
+    }
+
     if (!alertShown && browser.msie) {
       alert("WARNING, this site contains spoilers!")
       alertShown = true
@@ -82,7 +88,7 @@
       $spoiler.on('mouseout', function(e) {
         if ($spoiler.data('spoiler-state') == 'shrouded') performBlur(maxBlur, 1)
       })
-      $spoiler.on('click', function(e) {
+      $spoiler.on(clickType, function(e) {
         if ($spoiler.data('spoiler-state') == 'shrouded') {
           $spoiler.data('spoiler-state', 'revealed')
             .attr('title', '')
